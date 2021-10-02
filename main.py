@@ -28,8 +28,6 @@ def calculate_brightness(filename):
             for j in i:
                 total_sum += j.blue;        # all the colors are the same anyway, we are in grayscale
                 #print(j.blue);
-                #sys.stdin.read(1);
-                
 
         brightness = total_sum / pixels;
 
