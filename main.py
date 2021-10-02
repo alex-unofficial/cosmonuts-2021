@@ -9,9 +9,9 @@ from wand.color import Color
 
 # Draw plot:
 
-with Image(filename='renders/cube/0001.jpg') as img:
+with Image(filename='renders/cube/0001.png') as img:
     img.type = 'grayscale';
-    img.save(filename='renders/cube/gr0001.jpg');
+    img.save(filename='renders/cube/gr0001.png');
     print(img.width);
     print(img.height);
 
@@ -23,9 +23,8 @@ with Image(filename='renders/cube/0001.jpg') as img:
     for i in img:
         for j in i:
             total_sum += j.blue;        # all the colors are the same anyway, we are in grayscale
-            print(j.blue);
-            sys.stdin.read(1);
+            #print(j.blue);
+            #sys.stdin.read(1);
             
-    print(total_sum);
 
     brightness = total_sum / pixels;
