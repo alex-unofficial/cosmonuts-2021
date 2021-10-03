@@ -12,8 +12,11 @@ from wand.color import Color
 # Put the brightness values in an array
 
 # Draw plot:
+N = 60
+image_path = 'renders/kleopatra/'
+
 def calculate_brightness(filename):
-    with Image(filename='renders/cube/' + filename) as img:
+    with Image(filename=image_path + filename) as img:
         img.type = 'grayscale';
         #img.save(filename='gr0001.jpg');
         #print(img.width);
@@ -36,14 +39,22 @@ def calculate_brightness(filename):
         return brightness;
 
 
-cube=""
-bright_values = np.empty(60);
+bright_values = np.empty(N);
 
-for i in range(1, 61):
-    print("index: " + f"0{i:03}.png");
-    bright_values[i - 1] = calculate_brightness(f"0{i:03}.png");
+for i in range(1, N + 1):
+    print("index: " + f"{i:03}.png");
+    bright_values[i - 1] = calculate_brightness(f"0{i:02}.png");
     print(bright_values[i - 1]);
 
+phase = 2*np.pi * np.arange(60) / N
 plt.figure();
-plt.plot(bright_values[0:61]);
+
+plt.plot(phase, bright_values[0:N + 1]);
+
+plt.suptitle('216 Kleopatra')
+plt.title('Light Curve')
+
+plt.xlabel('Rotational Phase')
+plt.ylabel('Scaled Brightness')
+
 plt.show();
